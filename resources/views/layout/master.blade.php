@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> {{ $title }} </title>
+    <title>Google Maps </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -42,9 +42,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="page-title-box">                             
+                            {{-- <div class="page-title-box">                             
                                 <h4 class="page-title"> {{ $title }} </h4>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="row">

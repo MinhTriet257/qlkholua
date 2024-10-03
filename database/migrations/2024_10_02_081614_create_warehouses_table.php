@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rice_exports', function (Blueprint $table) {
+        Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rice_id')->constrained()->nullable();
-            $table->integer('quatity'); // số lượng
-            $table->decimal('unit_price',10,2);  // Đơn giá
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rice_exports');
+        Schema::dropIfExists('warehouses');
     }
 };
