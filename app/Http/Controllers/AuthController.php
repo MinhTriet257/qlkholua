@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
+    public function index()
+    {
+        return view('user.index');
+    }
+
     public function processLogin(Request $request )
     {
         $user = User::query()
@@ -25,7 +30,7 @@ class AuthController extends Controller
         session()->put('avatar', $user->avatar);
         session()->put('level', $user->level);
        
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
         // try {
         // } catch (\Throwable $e) {
         //     return redirect()->route('register');
