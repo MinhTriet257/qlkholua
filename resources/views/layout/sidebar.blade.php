@@ -47,7 +47,7 @@
             <li class="side-nav-title">Navigation</li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                <a data-bs-toggle="collapse" href="{{ route('users.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                     <i class="fas fa-home"></i>
                     <span class="badge bg-success float-end">5</span>
                     <span> Dashboards </span>
@@ -56,95 +56,35 @@
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{ route('warehouses.index') }}">Kho Lúa</a>
-                        </li>
+                        </li>                                            
+                    </ul>
+                    <ul class="side-nav-second-level">
                         <li>
-                            <a href="index.html">Ecommerce</a>
-                        </li>
-                        
+                            <a href="{{ route('users.index') }}">Kho Lúa</a>
+                        </li>                                            
                     </ul>
                 </div>
-            </li>
-
-            <li class="side-nav-title">Apps</li>
-
           
+                    
+           
+
+            
+                <li class="side-nav-title">Quản lý</li>
 
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
-                    <i class="uil-envelope"></i>
-                    <span> Email </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarEmail">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="apps-email-inbox.html">Inbox</a>
-                        </li>
-                        <li>
-                            <a href="apps-email-read.html">Read Email</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarProjects" aria-expanded="false" aria-controls="sidebarProjects" class="side-nav-link">
-                    <i class="uil-briefcase"></i>
-                    <span> Projects </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarProjects">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="apps-projects-list.html">List</a>
-                        </li>
-                        <li>
-                            <a href="apps-projects-details.html">Details</a>
-                        </li>
-                        <li>
-                            <a href="apps-projects-gantt.html">Gantt <span class="badge rounded-pill bg-light text-dark font-10 float-end">New</span></a>
-                        </li>
-                        <li>
-                            <a href="apps-projects-add.html">Create Project</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="side-nav-item">
-                <a href="apps-social-feed.html" class="side-nav-link">
-                    <i class="uil-rss"></i>
-                    <span> Social Feed </span>
+                <a href="{{ route('warehouses.index') }}" class="side-nav-link">
+                    <i class="fas fa-place-of-worship"></i>
+                    <span > Kho Lúa </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks" class="side-nav-link">
-                    <i class="uil-clipboard-alt"></i>
-                    <span> Tasks </span>
-                    <span class="menu-arrow"></span>
+                <a href="apps-chat.html" class="side-nav-link">
+                    <i class="uil-comments-alt"></i>
+                    <span> Chat </span>
                 </a>
-                <div class="collapse" id="sidebarTasks">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="apps-tasks.html">List</a>
-                        </li>
-                        <li>
-                            <a href="apps-tasks-details.html">Details</a>
-                        </li>
-                        <li>
-                            <a href="apps-kanban.html">Kanban Board</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
-
-            <li class="side-nav-item">
-                <a href="apps-file-manager.html" class="side-nav-link">
-                    <i class="uil-folder-plus"></i>
-                    <span> File Manager </span>
-                </a>
             </li>
 
 

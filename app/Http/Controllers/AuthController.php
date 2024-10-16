@@ -72,5 +72,19 @@ class AuthController extends Controller
         // }
 
     }
+      //Logout User
+      public function logout(Request $request){
+        // Logout the user
+        Auth::logout();
+
+        // invalidate user's session
+        $request->session()->invalidate();
+
+        // regenerate CSRF token
+        $request->session()->regenerateToken();
+
+        //redirect to home
+        return redirect('/');
+      }
 
 }

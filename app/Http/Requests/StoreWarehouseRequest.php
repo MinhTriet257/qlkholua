@@ -11,7 +11,7 @@ class StoreWarehouseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,32 @@ class StoreWarehouseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'warehouse_name' => [
+                'required',
+                'string',
+                'min:2',
+                'max:255',
+            ],
+            'address' => [
+                'required',
+                'string',
+                'min:5',
+                'max:255',
+            ],
+            'longitude' => [
+                'required',
+                'numeric',
+            ],
+            'latitude' => [
+                'required',
+                'numeric',
+            ],
+            'images' => [
+                'nullable',
+                'file',
+                'max:3000',
+                'mimes:webp,png,jpg',
+            ],
         ];
     }
 }

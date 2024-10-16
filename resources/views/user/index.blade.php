@@ -39,70 +39,52 @@
         });       
     </script>
     <script>
-    data = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [105.14428952400856, 9.916456607112663]
-            },
-            "properties": {
-                "name": "Trường Đại Học Kiên Giang"
-            }
-        }
-    ]
-    }
-    map.on('load', (e) => {
-    map.addSource('university-src', {
-        type: 'geojson', // Sửa 'seojson' thành 'geojson'
-        data: data
+        // URL API mới
+    const apiUrl = 'warehouses/geojson';
+
+    map.on('load', () => {
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            map.addSource('warehouse-src', {
+                type: 'geojson',
+                data: data
+            });
+            map.addLayer({
+                'id': 'warehouse-name',
+                'type': 'symbol',
+                'source': 'warehouse-src',
+                'layout': {
+                    'text-field': ['get', 'name'], // Hiển thị tên kho bên cạnh biểu tượng
+                    'text-size': 12,// Kích thước của icon
+                    'text-offset': [0, 1.5],// Khoảng cách giữa icon và text                    
+                },
+                'paint': {
+                    'text-color':'#333300'
+                 }
+            });
+            // Duyệt qua từng feature trong GeoJSON
+            data.features.forEach((feature) => {
+                // Lấy kinh độ và vĩ độ từ dữ liệu GeoJSON
+                const [longitude, latitude] = feature.geometry.coordinates;
+                
+                // Tạo marker
+                const marker = new mapboxgl.Marker({color:'#FF0000'})
+                    .setLngLat([longitude, latitude])  // Vị trí của marker từ GeoJSON
+                    .addTo(map);  // Thêm marker vào bản đồ
+
+
+            
+
+     
+           });
+        })
+        .catch(error => 
+            {console.error('Error loading data:', error);
         });
-    map.addLayer({
-        'id': 'university-location',
-        'type': 'circle',
-        'source': 'university-src',
-        'paint': {
-            'circle-radius': 10, // Đảm bảo đây là số
-            'circle-color': 'green' // Sử dụng 'circle-color' để chỉ định màu
-            }
-        });
+
     });
 
-    // Hiển thị form khi click vào bản đồ
-    map.on('click', (e) => {
-        const coordinates = e.lngLat;
-        const formContainer = document.getElementById('form-container');
-        formContainer.style.display = 'block';
-        //window.clickCoordinates = coordinates; // Lưu tọa độ
 
-                // Cập nhật tọa độ vào form
-        document.getElementById('longitude').value = coordinates.lng;
-        document.getElementById('latitude').value = coordinates.lat;
-    });
- 
-    // map.on('click', (e) => {
-    // const coordinates = e.lngLat;
-    // const formContainer = document.getElementById('form-container');
-    
-    // // Hiển thị form-container
-    // formContainer.style.display = 'block';
-
-    // // Gửi AJAX request để tải nội dung form
-    // fetch('{{ route('warehouses.create') }}')
-    //     .then(response => response.text())
-    //     .then(html => {
-    //         formContainer.innerHTML = html;  // Chèn nội dung form vào div
-    //         // Cập nhật tọa độ vào form sau khi tải xong
-    //         document.getElementById('longitude').value = coordinates.lng;
-    //         document.getElementById('latitude').value = coordinates.lat;
-    //     })
-    //     .catch(error => {
-    //         console.error('Error loading form:', error);
-    //     });
-    // });
-
-
-  </script>
+    </script>
 @endpush

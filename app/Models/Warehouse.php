@@ -9,9 +9,10 @@ class Warehouse extends Model
 {
     use HasFactory;
 
-    protected $fillble = [
+    protected $fillable = [
         'warehouse_name',
         'address',
+        'images',
         'longitude',
         'latitude',
     ];

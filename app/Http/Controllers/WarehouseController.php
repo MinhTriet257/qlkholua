@@ -6,6 +6,8 @@ use App\Models\Warehouse;
 use App\Http\Requests\StoreWarehouseRequest;
 use App\Http\Requests\UpdateWarehouseRequest;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WarehouseController extends Controller
 {
@@ -13,10 +15,45 @@ class WarehouseController extends Controller
      * Display a listing of the resource.
      */
     private Builder $model ;
-    
+    // public function _construct(){
+
+    //     $this->model = new Warehouse();
+
+    // }
     public function index()
     {
         return view('warehouse.index');
+
+
+    }
+    // Hàm trả về GeoJSON (dành cho API)
+    public function geojson()
+    {
+        $warehouses = Warehouse::all();
+
+        $geojson = [
+            'type' => 'FeatureCollection',
+            'features' => []
+        ];
+        foreach ($warehouses as $warehouse) {
+            $geojson['features'][] = [
+                'type' => 'Feature',
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [
+                        $warehouse->longitude,
+                        $warehouse->latitude
+                    ],
+                ],
+                'properties' => [
+                    'name' => $warehouse->warehouse_name,
+                    'address' => $warehouse->address, // Địa chỉ từ CSDL
+                    'image' => $warehouse->images,
+  
+                ],
+            ];
+        }
+        return response()->json($geojson);
     }
 
     /**
@@ -24,7 +61,7 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-       return view('warehouse.store'); 
+      // return view('warehouse.store'); 
     }
 
     /**
@@ -32,25 +69,15 @@ class WarehouseController extends Controller
      */
     public function store(StoreWarehouseRequest $request)
     {
+
+        $path = Storage::disk('public')->putFile('KL_images', $request->file('images'));
+        $arr = $request->validated();
+        $arr['images'] = $path;
         
-        // $this->model->create($request->validated());
-
-        // return redirect()->route('warehouses.index');
-        // dd('123');
-         // Xác thực dữ liệu
-        $validatedData = $request->validate([
-            'warehouse_name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'longitude' => 'required|numeric',
-            'latitude' => 'required|numeric',
-        ]);
-   
-        // Tạo mới kho lúa
-        Warehouses::create($validatedData);
-
-        // Chuyển hướng hoặc trả về thông báo thành công
-        return redirect()->route('warehouses.index')->with('success', 'Kho lúa đã được thêm thành công!');
-
+        Warehouse::create($arr);
+        return redirect()
+            ->route('warehouses.index')
+            ->with('success', 'Đã thêm thành công');
     }
 
     /**

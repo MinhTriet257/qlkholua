@@ -15,20 +15,25 @@ Route::post('login', [AuthController::class, 'processLogin'])->name('process_log
 Route::view('register', 'auth.register')->name('register');
 Route::post('register', [AuthController::class, 'processRegister'])->name('process_register');
 
+        Route::get('warehouses', [WarehouseController::class, 'index'])->name('warehouses.index');
+        Route::get('warehouses/create', [WarehouseController::class, 'create'])->name('warehouses.create');
+        Route::post('warehouses/store',[WarehouseController::class, 'store'])->name('warehouses.store');
+        Route::get('warehouses/geojson', [WarehouseController::class,'geojson'])->name('warehouses.geojson');
 
     
         Route::resource('users', AuthController::class)->except([
           'show',
         ]);
       //  Route::resource('warehouses', WarehouseController::class);
-        Route::group(['prefix' => 'warehouses', 'as' => 'warehouses.'], function() {
-            Route::get('/', [WarehouseController::class, 'index'])->name('index');
-            Route::get('/create', [WarehouseController::class, 'create'])->name('create');
-     //     Route::get('/store', [WarehouseController::class, 'store'])->name('store');
-            Route::post('/', [WarehouseController::class, 'store'])->name('store');
+    //     Route::group(['prefix' => 'warehouse', 'as' => 'warehouses.'], function() {
+    //         Route::get('/', [WarehouseController::class, 'index'])->name('index');
+    //         Route::get('/create', [WarehouseController::class, 'create'])->name('create');
+    //  //     Route::get('/store', [WarehouseController::class, 'store'])->name('store');
+    //         Route::post('/', [WarehouseController::class, 'store'])->name('store');
 
-           //      Route::get('/index', [WarehouseController::class, 'create'])->name('create');
-        });
+    //        //      Route::get('/index', [WarehouseController::class, 'create'])->name('create');
+    //     });
+        
 
 
 
