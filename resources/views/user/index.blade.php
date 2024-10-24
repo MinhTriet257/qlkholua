@@ -71,12 +71,7 @@
                 // Tạo marker
                 const marker = new mapboxgl.Marker({color:'#FF0000'})
                     .setLngLat([longitude, latitude])  // Vị trí của marker từ GeoJSON
-                    .addTo(map);  // Thêm marker vào bản đồ
-
-
-            
-
-     
+                    .addTo(map);  // Thêm marker vào bản đồ  
            });
         })
         .catch(error => 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Warehouse;
 use App\Http\Requests\StoreWarehouseRequest;
 use App\Http\Requests\UpdateWarehouseRequest;
+use App\Http\Requests\Warehouse\StoreRequest;
+use App\Http\Requests\Warehouse\UpdateRequest;
+use Directory;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -24,12 +27,24 @@ class WarehouseController extends Controller
     {
         return view('warehouse.index');
 
-
     }
     // Hàm trả về GeoJSON (dành cho API)
-    public function geojson()
+    public function geojson(Request  $request)
     {
+
+        // $warehouses = Warehouse::all();
+
+        // Kiểm tra xem có tham số tìm kiếm (query) không
+    $query = $request->input('query');
+
+    // Nếu có tham số tìm kiếm, tìm kho lúa theo tên
+    if ($query) {
+        $warehouses = Warehouse::where('warehouse_name', 'like', '%' . $query . '%')->get();
+    } else {
+        // Nếu không có tham số tìm kiếm, lấy tất cả kho lúa
         $warehouses = Warehouse::all();
+    }
+
 
         $geojson = [
             'type' => 'FeatureCollection',
@@ -46,10 +61,10 @@ class WarehouseController extends Controller
                     ],
                 ],
                 'properties' => [
+                    'id' => $warehouse->id,
                     'name' => $warehouse->warehouse_name,
                     'address' => $warehouse->address, // Địa chỉ từ CSDL
                     'image' => $warehouse->images,
-  
                 ],
             ];
         }
@@ -67,7 +82,7 @@ class WarehouseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWarehouseRequest $request)
+    public function store(StoreRequest $request)
     {
 
         $path = Storage::disk('public')->putFile('KL_images', $request->file('images'));
@@ -99,7 +114,7 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateWarehouseRequest $request, Warehouse $warehouse)
+    public function update(UpdateRequest $request, Warehouse $warehouse)
     {
         //
     }
@@ -107,8 +122,13 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Warehouse $warehouse)
+    public function destroy(Request $request)
     {
-        //
+        $id  = $request->id;
+
+        $warehouse = Warehouse::find($id);
+        $warehouse->delete();
+
+        return redirect()->route('warehouses.index');
     }
 }

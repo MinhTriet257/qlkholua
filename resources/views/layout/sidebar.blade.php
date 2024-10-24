@@ -6,19 +6,19 @@
         <span class="logo-lg">
             <img src="assets/images/logo.png" alt="logo">
         </span>
-        <span class="logo-sm">
+        {{-- <span class="logo-sm">
             <img src="assets/images/logo-sm.png" alt="small logo">
-        </span>
+        </span> --}}
     </a>
 
     <!-- Brand Logo Dark -->
     <a href="index.html" class="logo logo-dark">
         <span class="logo-lg">
-            <img src="assets/images/logo-dark.png" alt="dark logo">
+            <img src="assets/system/logo_kholua.png" alt="dark logo">
         </span>
-        <span class="logo-sm">
+        {{-- <span class="logo-sm">
             <img src="assets/images/logo-dark-sm.png" alt="small logo">
-        </span>
+        </span> --}}
     </a>
 
     <!-- Sidebar Hover Menu Toggle Button -->
@@ -34,17 +34,17 @@
     <!-- Sidebar -->
     <div class="h-100" id="leftside-menu-container" data-simplebar>
         <!-- Leftbar User -->
-        <div class="leftbar-user">
+        {{-- <div class="leftbar-user">
             <a href="pages-profile.html">
-                <img src="assets/images/users/avatar-1.jpg" alt="user-image" height="42" class="rounded-circle shadow-sm">
+                <img src="assets/system/avatar.jpg" alt="user-image" height="42" class="rounded-circle shadow-sm">
                 <span class="leftbar-user-name mt-2">Dominic Keller</span>
             </a>
-        </div>
+        </div> --}}
 
         <!--- Sidemenu -->
         <ul class="side-nav">
 
-            <li class="side-nav-title">Navigation</li>
+            {{-- <li class="side-nav-title">Navigation</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="{{ route('users.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
@@ -64,28 +64,50 @@
                         </li>                                            
                     </ul>
                 </div>
-          
+           --}}
                     
            
 
-            
-                <li class="side-nav-title">Quản lý</li>
-
+            <li class="side-nav-item">
+                <a href="{{ route('users.index') }}" class="side-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span > Dasboards </span>
+                </a>
+            </li>
+            <li class="side-nav-title">Quản lý</li>
 
             <li class="side-nav-item">
                 <a href="{{ route('warehouses.index') }}" class="side-nav-link">
-                    <i class="fas fa-place-of-worship"></i>
+                    <i class="fas fa-warehouse"></i>
                     <span > Kho Lúa </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('employees.index') }}" class="side-nav-link">
+                    <i class="fas fa-user"></i>
+                    <span > Nhân Viên </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('warehouses.index') }}" class="side-nav-link">
+                    <i class="fas fa-book"></i>
+                    <span > Hoá Đơn </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
                 <a href="apps-chat.html" class="side-nav-link">
-                    <i class="uil-comments-alt"></i>
-                    <span> Chat </span>
+                    <i class="fas fa-bars"></i>
+                    <span> Cài Đặt </span>
                 </a>
             </li>
+            <li class="side-nav-item">
+                <a href="apps-chat.html" class="side-nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span> Cài Đặt </span>
+                </a>
             </li>
+        </li>
 
 
 

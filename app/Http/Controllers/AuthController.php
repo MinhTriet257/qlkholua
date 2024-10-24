@@ -31,10 +31,7 @@ class AuthController extends Controller
         session()->put('level', $user->level);
        
         return redirect()->route('users.index');
-        // try {
-        // } catch (\Throwable $e) {
-        //     return redirect()->route('register');
-        // }
+
   
     }
 
@@ -75,7 +72,7 @@ class AuthController extends Controller
       //Logout User
       public function logout(Request $request){
         // Logout the user
-        Auth::logout();
+        //Auth::logout();
 
         // invalidate user's session
         $request->session()->invalidate();

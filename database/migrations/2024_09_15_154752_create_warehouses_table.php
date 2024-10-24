@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
             $table->string('warehouse_name', 70);  // Tạo cột warehouse_name với kiểu VARCHAR(70)
-            $table->string('address', 255);        // Tạo cột address với kiểu VARCHAR(255)
+            $table->string('address', 255); 
+            $table->string('images')->nullable();       // Tạo cột address với kiểu VARCHAR(255)
             $table->string('longitude', );    // Tạo cột longitude với kiểu DECIMAL(9, 6)
             $table->string('latitude', );     // Tạo cột latitude với kiểu DECIMAL(8, 6)
             $table->timestamps();

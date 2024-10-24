@@ -9,11 +9,25 @@ class Warehouse extends Model
 {
     use HasFactory;
 
+    protected $table = 'warehouses';
+
     protected $fillable = [
+        'id',
         'warehouse_name',
         'address',
         'images',
         'longitude',
         'latitude',
     ];
+
+    public static function getSelectAttribute () {
+        return [
+        'id',
+        'warehouse_name',
+        'address',
+        'images',
+        'longitude',
+        'latitude',
+        ];
+    }
 }

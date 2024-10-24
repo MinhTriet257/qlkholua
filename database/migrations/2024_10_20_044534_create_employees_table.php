@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name', 75);
+            $table->string('full_name', 75)->notNullable();
+            $table->boolean('gender')->default(0);
+            $table->date('birthdate');
             $table->string('phone_number', 10);
-            $table->foreignId('warehouse_id')->nullable()->default(null);
+            $table->string('avarta');
+            $table->foreignId('warehouse_id')->constrained()->default(null);
             $table->timestamps();
         });
     }

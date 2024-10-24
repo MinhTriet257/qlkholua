@@ -84,33 +84,12 @@
     </div>
     <!-- END wrapper -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-   
-   
     <!-- Vendor js -->
     <script src="{{ asset('js/vendor.min.js')}}"></script>
-   
     <!-- App js -->
     <script src="{{ asset('js/app.min.js')}}"></script>
-
     @stack('js')
     
-
-    {{-- <!-- Daterangepicker js -->
-    <script src="assets/vendor/daterangepicker/moment.min.js"></script>
-    <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
-
-    <!-- Charts js -->
-    <script src="assets/vendor/chart.js/chart.min.js"></script>
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-
-    <!-- Vector Map js -->
-    <script src="assets/vendor/jsvectormap/js/jsvectormap.min.js"></script>
-    <script src="assets/vendor/jsvectormap/maps/world-merc.js"></script>
-    <script src="assets/vendor/jsvectormap/maps/world.js"></script>
-    <!-- Analytics Dashboard App js -->
-    <script src="assets/js/pages/demo.dashboard-analytics.js"></script> 
-    --}}
-
 </body>
 
 </html>
